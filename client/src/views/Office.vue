@@ -1,10 +1,10 @@
 <template>
     <Header :page="data.page"/>
     <div class="flex justify-between flex-wrap gap-0 w-[90%] lg:w-[100%] mx-auto">
-        <div class="w-full lg:w-[22%]">
+        <div class="w-full lg:h-full lg:w-[22%]">
             <Navbar @updatePage="updatePage" :page="data.page"/>
         </div>
-        <div class="w-full mt-10 lg:mt-0 lg:w-9/12 border-2 lg:mx-10">
+        <div class="w-full mt-10 lg:mt-0 lg:w-[70%] lg:mx-10">
             <Dashboard v-if="data.page === 'Dashboard'" />
             <Active  v-if="data.page === 'Active'"/>
             <Completed  v-if="data.page === 'Completed'"/>
