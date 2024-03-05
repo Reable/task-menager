@@ -11,25 +11,27 @@
     </button>
     <div v-if="data.openModal" class="fixed top-0 left-0 right-0 bottom-0 backdrop-blur-sm bg-[rgb(0,0,0,0.2)] cursor-pointer z-[999]" @click="data.openModal = !data.openModal">
         <div @click.stop class="cursor-auto absolute top-[50%] left-[50%] translate-y-[-50%] translate-x-[-50%] rounded-2xl w-[80%] lg:w-[800px] lg:h-[400px] bg-white">
-            <form action="" class="px-10 py-5 lg:px-20 lg:py-10">
+            <form action="" class="px-10 py-5 lg:px-10 lg:py-10">
                 <input
+                    v-model="data.title"
                     type="text"
                     placeholder="Add title"
                     name="title"
-                    class="w-full bg-white border-none font-regular rounded-lg lg:rounded-2xl h-[50px] text-[12px] px-5 mb-[20px] lg:h-[60px] lg:text-[16px] lg:px-10 lg:mb-[30px] shadow-md"
+                    class="w-full bg-white border-none font-regular rounded-lg h-[50px] text-[12px] mb-[20px] lg:h-[60px] lg:text-[16px] px-5 lg:mb-[30px] shadow-md"
                 >
                 <textarea
+                    v-model="data.description"
                     type="text"
                     placeholder="Add description"
                     name="description"
-                    class="w-full bg-white border-none font-regular rounded-lg lg:rounded-2xl h-[120px] text-[12px] px-5 py-3 mb-[20px] lg:h-[170px] lg:text-[16px] lg:px-10 lg:py-5 lg:mb-[30px] shadow-md"
+                    class="w-full resize-none bg-white border-none font-regular rounded-lg h-[120px] text-[12px] py-3 mb-[20px] lg:h-[170px] lg:text-[16px] lg:py-5 px-5  lg:mb-[30px] shadow-md"
                 />
 
                 <div class="flex gap-5 justify-end">
-                    <button @click="data.openModal = !data.openModal" class="w-[80px] h-[30px] text-[12px] rounded-lg lg:w-[130px] lg:h-[50px] lg:text-[20px] lg:rounded-xl border-2 border-[#EDB046] text-black font-regular">
+                    <button @click="data.openModal = !data.openModal" class="w-[80px] h-[30px] text-[12px] rounded-md lg:w-[130px] lg:h-[50px] lg:text-[20px] lg:rounded-xl border-2 border-[#EDB046] text-black font-regular">
                         Cansel
                     </button>
-                    <button @click.prevent class="w-[80px] h-[30px] text-[12px] lg:w-[130px] lg:h-[50px] rounded-lg lg:text-[20px] lg:rounded-xl border-2 border-[#EDB046] bg-[#EDB046] text-black font-regular active:bg-[#fff]">
+                    <button @click.prevent="addTask" class="w-[80px] h-[30px] text-[12px] lg:w-[130px] lg:h-[50px] rounded-md lg:text-[20px] lg:rounded-xl border-2 border-[#EDB046] bg-[#EDB046] text-black font-regular active:bg-[#fff]">
                         Save
                     </button>
                 </div>
@@ -41,9 +43,21 @@
 <script setup>
     import {reactive} from "vue";
 
+    import {useStore} from '../store/store.js'
+
     const data = reactive({
-        openModal: false
+      openModal: false,
+      title: "",
+      description: ""
     })
+
+    const addTask = async () => {
+
+      const info = await useStore().addTask({title: data.title, description: data.description, completed: false})
+
+      data.openModal = false
+    }
+
 </script>
 
 <style scoped>

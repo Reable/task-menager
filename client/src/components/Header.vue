@@ -3,7 +3,7 @@
         <h1 class="font-bold text-[#BA5112] text-[20px] lg:text-[36px] min-w-[20%]">To-Do App</h1>
 
         <div class="hidden lg:flex w-4/6 justify-start items-center">
-            <p class="font-regular text-[28px]">Dashboard</p>
+            <p class="font-regular text-[28px]">{{props.page}}</p>
         </div>
 
         <div class="flex gap-3">
@@ -23,8 +23,10 @@
 </template>
 
 <script setup>
-
 import AddTask from "./AddTask.vue";
+
+const props = defineProps(['page'])
+
 </script>
 
 <style scoped>

@@ -1,21 +1,21 @@
 <template>
-    <div class="w-full ">
+    <div class="w-full">
 
         <div class="hidden lg:flex mb-10 justify-center">
             <AddTask/>
         </div>
-        <div class="hidden lg:block border-2">
-            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="dashboard"
-                    :class="data.activePage === 'dashboard' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
-                    @click="(e) => data.activePage = e.target.id"
+        <div class="hidden lg:flex flex-wrap gap-5">
+            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="Dashboard"
+                    :class="props.page === 'Dashboard' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
+                    @click="(e) => data.page = e.target.id"
             >Dashboard</button>
-            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="active"
-                    :class="data.activePage === 'active' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
-                    @click="(e) => data.activePage = e.target.id"
+            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="Active"
+                    :class="props.page === 'Active' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
+                    @click="(e) => data.page = e.target.id"
             >Active</button>
-            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="completed"
-                    :class="data.activePage === 'completed' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
-                    @click="(e) => data.activePage = e.target.id"
+            <button class="font-regular text-[16px] w-full h-[44px] m-0 p-0 transition-all hover:bg-[#efefef]" id="Completed"
+                    :class="props.page === 'Completed' ? 'bg-[#EDB046] hover:bg-[#EDB046]' : ''"
+                    @click="(e) => data.page = e.target.id"
             >Completed</button>
         </div>
 
@@ -35,11 +35,18 @@
     
 <script setup>
 
-import {reactive} from "vue";
+import {reactive, watch} from "vue";
 import AddTask from "./AddTask.vue";
 
+const props = defineProps(['page'])
+const emit = defineEmits(['updatePage'])
+
 const data = reactive({
-    activePage: "dashboard"
+    page: props.page
+})
+
+watch(data, () => {
+    emit('updatePage', data.page)
 })
 
 </script>
