@@ -64,9 +64,9 @@
                     class="w-full bg-white h-[70px] border-none font-regular rounded-2xl text-[20px] px-10 mb-[40px] shadow-md"
                 >
 
-                <button class="bg-[#EDB046] h-[70px] w-[200px] font-regular text-[20px] mt-10 rounded-2xl">
+                <router-link to="/office" class="flex justify-center items-center bg-[#EDB046] h-[70px] w-[200px] font-regular text-[20px] mt-10 rounded-2xl">
                     Sign In
-                </button>
+                </router-link>
             </form>
             <div class="text-center mt-5 font-regular text-[20px]">
                 <p>
