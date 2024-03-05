@@ -20,7 +20,7 @@
         <h1 class="font-bold lg:text-[28px] text-center lg:mb-3">{{data.title}}</h1>
         <p class="font-regular text-[#BA5112] lg:text-[16px] text-center lg:mb-7">added 3d ago</p>
         <p class="font-bold lg:text-[20px] text-center mb-5">Description</p>
-        <p class="break-all font-regular lg:text-[20px] text-center">{{data.title}}</p>
+        <p class="break-all font-regular lg:text-[20px] text-center">{{data.description}}</p>
       </div>
 
       <div v-if="data.updateTaskModel">
