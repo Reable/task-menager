@@ -1,0 +1,21 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Lexend-Regular";
+    src: url("./assets/fonts/Lexend-Regular.ttf");
+}
+
+@font-face {
+    font-family: "Lexend-Bold";
+    src: url("./assets/fonts/Lexend-Bold.ttf");
+}
+
+.shadow-circle{
+    box-shadow: 0 0 10px rgba(128, 128, 128, 0.2);
+}
+
+a{
+    color: #efefef;
+}
