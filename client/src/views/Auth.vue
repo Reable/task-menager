@@ -1,6 +1,6 @@
 <template>
-    <div class="auth-page relative h-[100dvh] overflow-hidden">
-        <div  v-if="data.register" class="absolute lg:w-[50%] rounded-3xl bg-[#EDB046] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-10 text-white">
+    <div class="auth-page relative overflow-hidden">
+        <div  v-if="data.register" class="absolute lg:w-[50%] rounded-3xl bg-[#EDB046] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-8 text-white">
             <div class="text-center">
                 <h1 class="font-bold text-[30px] lg:text-[60px]">
                     To-Do App
@@ -23,7 +23,7 @@
                     name="password"
                     class="text-black w-full bg-white h-[40px] lg:h-[70px] border-none font-regular rounded-lg text-[12px] lg:text-[20px] px-5 lg:px-10 mb-[20px] lg:mb-[40px]"
                 >
-                <button @click.prevent="auth" class="bg-[#BA5112] h-[40px] lg:h-[70px] w-[200px] font-regular text-[14px] lg:text-[20px] mt-5 lg:mt-10 rounded-2xl">
+                <button @click.prevent="auth" class="bg-[#BA5112] h-[40px] lg:h-[70px] w-[200px] font-regular text-[14px] lg:text-[20px] mt-5 lg:mt-10 rounded-lg">
                     Sign Up
                 </button>
             </form>
@@ -64,7 +64,7 @@
                     class="text-black w-full bg-white h-[40px] lg:h-[70px] border-none font-regular rounded-lg text-[12px] lg:text-[20px] px-5 lg:px-10 mb-[15px] lg:mb-[40px] shadow-lg"
                 >
 
-                <button @click.prevent="register" class="flex justify-center items-center bg-[#EDB046] h-[40px] lg:h-[70px] w-[200px] font-regular text-[14px] lg:text-[20px] mt-5 lg:mt-10 rounded-2xl">
+                <button @click.prevent="register" class="flex justify-center items-center bg-[#EDB046] h-[40px] lg:h-[70px] w-[200px] font-regular text-[14px] lg:text-[20px] mt-5 lg:mt-10 rounded-lg">
                     Sign In
                 </button>
             </form>
