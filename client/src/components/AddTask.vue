@@ -1,9 +1,9 @@
 <template>
-    <button class="flex justify-between items-center shadow-circle rounded-xl font-regular text-[10px] lg:text-[20px] w-[100px] lg:w-[180px] lg:h-[68px] px-2 lg:px-5 gap-3 lg:gap-5 m-0 transition-all hover:scale-105"
+    <button class="flex justify-between items-center shadow-circle rounded-lg font-regular text-[6px] usm:text-[10px] lg:text-[20px] w-[70px] usm:w-[100px] lg:w-[180px] lg:h-[68px] px-2 lg:px-5 gap-1 us,:gap-3 lg:gap-5 m-0 h-[30px] usm:h-[40px] transition-all hover:scale-105"
         @click="data.openModal = !data.openModal"
     >
         <span>Add task</span>
-        <svg class="w-[20px] h-[20px] lg:w-[32px] lg:h-[32px]" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg class="w-[15px] h-[15px] usm:w-[20px] usm:h-[20px] lg:w-[32px] lg:h-[32px]" viewBox="0 0 36 36" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="18" cy="18" r="18" fill="#BA5112"/>
             <path d="M18.125 12L18.125 24" stroke="white" stroke-width="2" stroke-linecap="round"/>
             <path d="M12 17.875H24" stroke="white" stroke-width="2" stroke-linecap="round"/>
