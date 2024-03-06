@@ -1,5 +1,5 @@
 <template>
-    <div class="auth-page relative h-[100vh] overflow-hidden">
+    <div class="auth-page relative h-[100dvh] overflow-hidden">
         <div  v-if="data.register" class="absolute lg:w-[50%] rounded-3xl bg-[#EDB046] top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-10 text-white">
             <div class="text-center">
                 <h1 class="font-bold text-[30px] lg:text-[60px]">
