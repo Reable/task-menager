@@ -10,5 +10,5 @@
 >> cd ../server && composer install \
 
 > ## Running
->Backend - php artisan serve (port-8000) \
->Frontend - npm run dev (port-5137)
+>Backend - cd ./server && php artisan serve \
+>Frontend - cd ./client && npm run dev
