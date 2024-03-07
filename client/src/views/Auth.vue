@@ -9,15 +9,23 @@
                     Start organizing your life day by day
                 </p>
             </div>
-            <form class="mt-10 lg:mt-20 flex justify-center flex-wrap">
+
+            <p class="text-center text-red text-[14px] lg:text-[20px] text-red-600 mt-2 lg:mt-5">{{ data.errors.message }}</p>
+
+            <form class="mt-5 lg:mt-10 flex justify-center flex-wrap">
+
+                <p class="text-[12px] lg:text-[20px] mb-1 lg:mb-3 text-red-600">{{data.errors.login ? data.errors.login[0] : "" }}</p>
                 <input
+                    v-model="data.login"
                     type="text"
                     placeholder="Login"
                     name="login"
                     class="text-black w-full bg-white h-[40px] lg:h-[70px] border-none font-regular rounded-lg text-[12px] lg:text-[20px] px-5 lg:px-10 mb-[15px] lg:mb-[40px]"
                 >
 
+                <p class="text-[12px] lg:text-[20px] mb-1 lg:mb-3 text-red-600">{{data.errors.password ? data.errors.password[0] : "" }}</p>
                 <input
+                    v-model="data.password"
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -27,6 +35,7 @@
                     Sign Up
                 </button>
             </form>
+
             <div class="text-center mt-5 font-regular text-[12px] lg:text-[20px]">
                 <p>
                     Already have an account?
@@ -40,7 +49,8 @@
                 </p>
             </div>
         </div>
-        <div  v-else class="absolute border-2 lg:w-[50%] rounded-3xl bg-white top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-10 lg:p-20">
+
+        <div  v-else class="absolute border-2 lg:w-[50%] rounded-3xl bg-white top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] p-8">
             <div class="text-center">
                 <h1 class="font-bold text-[30px] lg:text-[60px] text-[#BA5112]">
                     To-Do App
@@ -49,15 +59,22 @@
                     Start organizing your life day by day
                 </p>
             </div>
-            <form class="mt-10 lg:mt-20 flex justify-center flex-wrap">
+
+            <p class="text-center text-red text-[14px] lg:text-[20px] text-red-600 mt-2 lg:mt-5">{{ data.errors.message }}</p>
+
+            <form class="mt-5 lg:mt-20 flex justify-center flex-wrap">
+                <p class="text-[12px] lg:text-[20px] mb-1 lg:mb-3 text-red-600">{{data.errors.login ? data.errors.login[0] : "" }}</p>
                 <input
+                    v-model="data.login"
                     type="text"
                     placeholder="Login"
                     name="login"
                     class="text-black w-full bg-white h-[40px] lg:h-[70px] border-none font-regular rounded-lg text-[12px] lg:text-[20px] px-5 lg:px-10 mb-[15px] lg:mb-[40px] shadow-lg"
                 >
 
+                <p class="text-[12px] lg:text-[20px] mb-1 lg:mb-3 text-red-600">{{data.errors.password ? data.errors.password[0] : "" }}</p>
                 <input
+                    v-model="data.password"
                     type="password"
                     placeholder="Password"
                     name="password"
@@ -88,19 +105,88 @@
 <script setup>
     import {reactive} from "vue";
     import {useRouter} from "vue-router";
+    import {useStore} from '../store/store'; // Предполагая, что ваш store.js находится в каталоге store, который расположен на один уровень выше текущего файла
+
 
     const router = useRouter()
+    const store = useStore()
 
     const data = reactive({
-        register: true
+      register: true,
+      login: "",
+      password: "",
+      errors: {
+        message: "",
+        login: [],
+        password: []
+      }
     })
 
-    const register = () => {
-      router.push('/office')
+    const register = async () => {
+      try {
+        let user = {
+          login: data.login,
+          password: data.password
+        };
+
+        data.errors = {
+          message: "",
+          login: [],
+          password: []
+        }
+
+        const res = await store.register(user);
+
+        if (res.status === 412) {
+          data.errors.login = res.data.errors.login ?? '';
+          data.errors.password = res.data.errors.password ?? '';
+        }
+
+        if (res.status === 400) {
+          data.errors.message = res.data.error.message
+        }
+
+        if (res.status === 200) {
+          localStorage.setItem('token', res.data.token)
+          await router.push('/office')
+        }
+      } catch (error) {
+        console.error('Error occurred:', error);
+      }
     }
 
-    const auth = () => {
-      router.push('/office')
+    const auth = async () => {
+      try {
+        let user = {
+          login: data.login,
+          password: data.password
+        };
+
+        data.errors = {
+          message: "",
+          login: [],
+          password: []
+        }
+
+        const res = await store.login(user);
+
+        if (res.status === 412) {
+            data.errors.login = res.data.errors.login ?? '';
+            data.errors.password = res.data.errors.password ?? '';
+        }
+
+        if (res.status === 400) {
+            data.errors.message = res.data.error.message
+        }
+
+        if (res.status === 200) {
+          localStorage.setItem('token', res.data.token)
+          await router.push('/office')
+        }
+      } catch (error) {
+        console.error('Error occurred:', error);
+      }
+
     }
 
 </script>
