@@ -1,6 +1,8 @@
 <template>
-  <template v-if="data.allTasks[0]" v-for="task of data.allTasks" :key="task.id">
-    <Task :task="task" />
+  <template v-if="data.allTasks[0]">
+    <template v-for="task of data.allTasks" :key="task.id">
+        <Task :task="task" />
+    </template>
   </template>
   <template v-else>
     <p class="text-center text-[25px]">No completed tasks</p>
