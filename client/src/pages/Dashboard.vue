@@ -49,9 +49,7 @@
   })
 
   const filteredItems = async () => {
-    console.log(data.filter)
     let tasks = await generateTasks(data.filter)
-    console.log(tasks[0])
     switch(Number(data.filter)){
       case 1:
         store.allTasks = tasks
